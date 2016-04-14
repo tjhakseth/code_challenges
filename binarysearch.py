@@ -20,6 +20,7 @@ of 1-100, this should never be more than 7.
 
     >>> max([binary_search(i) for i in range(1, 101)])
     7
+
 """
 
 
@@ -28,25 +29,23 @@ def binary_search(val):
 
     assert 0 < val < 101, "Val must be between 1-100"
 
-    num_guesses = 1
-    min_num = 0
-    max_num = 100
-    mid_num = 50
+    num_guesses = 0
 
-    while val != mid_num:
-        if val > mid_num:
-            min_num = mid_num
-            variant = ((max_num - mid_num) / 2)
-            mid_num = mid_num + variant
-            num_guesses = num_guesses + 1
-        else:
-            max_num = mid_num
-            var = ((max_num - min_num) / 2)
-            mid_num = mid_num - var
-            num_guesses = num_guesses + 1
+    higher_than = 0
+    lower_than = 101
+    guess = None
+
+    while guess != val:
+        num_guesses += 1
+        guess = (lower_than - higher_than) / 2 + higher_than
+
+        if val > guess:
+            higher_than = guess
+
+        elif val < guess:
+            lower_than = guess
 
     return num_guesses
-
 
 if __name__ == '__main__':
     import doctest
