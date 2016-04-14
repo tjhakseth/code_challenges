@@ -25,7 +25,6 @@ Examples::
     False
 
 """
-    
 
 
 def is_anagram_of_palindrome(word):
